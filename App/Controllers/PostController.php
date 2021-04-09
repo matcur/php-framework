@@ -1,8 +1,8 @@
 <?php
 
-namespace Blog\Controllers;
+namespace App\Controllers;
 
-use Blog\Models\Post;
+use App\Models\Post;
 use Framework\ActionResults\Json;
 use Framework\ActionResults\Redirect;
 use Framework\ActionResults\View;

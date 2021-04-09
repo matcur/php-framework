@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $posts \Blog\Models\Post[]
+ * @var $posts \App\Models\Post[]
  */
 ?>
 <!DOCTYPE html>

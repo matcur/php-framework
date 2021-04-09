@@ -1,8 +1,8 @@
 <?php
 
-namespace framework\ActionResults;
+namespace Framework\ActionResults;
 
-use framework\App;
+use Framework\App;
 
 class View implements ActionResult
 {
@@ -24,7 +24,7 @@ class View implements ActionResult
 
     public function execute()
     {
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/../Blog/views/' . $this->path;
+        $path = $_SERVER['DOCUMENT_ROOT'] . '/../App/views/' . $this->path;
         if (!file_exists($path))
             $this->throwFileNotExistsException();
 

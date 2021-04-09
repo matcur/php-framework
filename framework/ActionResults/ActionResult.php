@@ -1,6 +1,6 @@
 <?php
 
-namespace framework\ActionResults;
+namespace Framework\ActionResults;
 
 interface ActionResult
 {

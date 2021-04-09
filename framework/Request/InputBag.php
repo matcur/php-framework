@@ -1,8 +1,8 @@
 <?php
 
-namespace framework\Request;
+namespace Framework\Request;
 
-use framework\Support\Arr;
+use Framework\Support\Arr;
 
 class InputBag
 {
