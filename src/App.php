@@ -37,6 +37,6 @@ class App
         $route = $this->router->resolveCurrentRoute();
         /** @var $actionResult ActionResult */
         $actionResult = (new Action($route))->execute();
-        $actionResult->render();
+        $actionResult->execute();
     }
 }

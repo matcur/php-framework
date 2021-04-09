@@ -16,13 +16,13 @@ class View implements ActionResult
      */
     private $arguments;
 
-    public function __construct(string $path, array $arguments)
+    public function __construct(string $path, array $arguments = [])
     {
         $this->path = $path;
         $this->arguments = $arguments;
     }
 
-    public function render()
+    public function execute()
     {
         $path = $_SERVER['DOCUMENT_ROOT'] . '/../Blog/views/' . $this->path;
         if (!file_exists($path))

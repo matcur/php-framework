@@ -34,12 +34,20 @@ class Route
 
     public function getController()
     {
-        return $this->controller;
+        $controllerName = $this->controller;
+        if ($controllerName != '')
+            $controllerName = ucfirst($controllerName) . 'Controller';
+
+        return $controllerName;
     }
 
     public function getAction()
     {
-        return $this->action;
+        $actionName = $this->action;
+        if ($actionName != '')
+            $actionName = 'action' . ucfirst($actionName);
+
+        return $actionName;
     }
 
     public function getParameters()

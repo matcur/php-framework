@@ -19,28 +19,10 @@ class Router
     public function resolveCurrentRoute()
     {
         return new Route(
-            $this->resolveCurrentController(),
-            $this->resolveCurrentAction(),
+            $this->request->get('controller', ''),
+            $this->request->get('action', ''),
             $this->resolveCurrentParameters()
         );
-    }
-
-    public function resolveCurrentController()
-    {
-        $controllerName = $this->request->get('controller');
-        if ($controllerName != '')
-            $controllerName = ucfirst($controllerName) . 'Controller';
-
-        return $controllerName;
-    }
-
-    public function resolveCurrentAction()
-    {
-        $actionName = $this->request->get('action');
-        if ($actionName != '')
-            $actionName = 'action' . ucfirst($actionName);
-
-        return $actionName;
     }
 
     public function resolveCurrentParameters()

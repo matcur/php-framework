@@ -11,7 +11,7 @@ class Json implements ActionResult
         $this->value = $value;
     }
 
-    public function render()
+    public function execute()
     {
         echo json_encode($this->value);
     }
