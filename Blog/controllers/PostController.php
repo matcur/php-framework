@@ -2,7 +2,9 @@
 
 namespace Blog\Controllers;
 
-class PostController
+use Framework\Controller\BaseController;
+
+class PostController extends BaseController
 {
     public function actionIndex()
     {
