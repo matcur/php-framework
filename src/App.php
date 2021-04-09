@@ -3,6 +3,7 @@
 namespace Framework;
 
 use Framework\Controller\Action;
+use Framework\Request\Request;
 use Framework\Routing\Router;
 
 class App
@@ -14,9 +15,15 @@ class App
      */
     private $router;
 
-    public function __construct(Router $router)
+    /**
+     * @var Request
+     */
+    private $request;
+
+    public function __construct(Router $router, Request $request)
     {
         $this->router = $router;
+        $this->request = $request;
     }
 
     public function run()

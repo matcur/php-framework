@@ -2,8 +2,20 @@
 
 namespace Framework\Routing;
 
+use Framework\Request\Request;
+
 class Router
 {
+    /**
+     * @var Request
+     */
+    private $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
     public function resolveCurrentRoute()
     {
         return new Route(
@@ -13,25 +25,25 @@ class Router
         );
     }
 
-    private function resolveCurrentController()
+    public function resolveCurrentController()
     {
-        $controllerName = $_GET['controller'];
+        $controllerName = $this->request->get('controller');
         if ($controllerName != '')
             $controllerName = ucfirst($controllerName) . 'Controller';
 
         return $controllerName;
     }
 
-    private function resolveCurrentAction()
+    public function resolveCurrentAction()
     {
-        $actionName = $_GET['action'];
+        $actionName = $this->request->get('action');
         if ($actionName != '')
             $actionName = 'action' . ucfirst($actionName);
 
         return $actionName;
     }
 
-    private function resolveCurrentParameters()
+    public function resolveCurrentParameters()
     {
         $result = [];
         $keys = array_diff(array_keys($_GET), ['action', 'controller']);
