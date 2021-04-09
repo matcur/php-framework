@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\ActionResults;
+namespace framework\ActionResults;
 
 class Redirect implements ActionResult
 {

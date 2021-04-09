@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\ActionResults;
+namespace framework\ActionResults;
 
 class Json implements ActionResult
 {

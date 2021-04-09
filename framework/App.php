@@ -1,11 +1,11 @@
 <?php
 
-namespace Framework;
+namespace framework;
 
-use Framework\ActionResults\ActionResult;
-use Framework\Controller\Action;
-use Framework\Request\Request;
-use Framework\Routing\Router;
+use framework\ActionResults\ActionResult;
+use framework\Controller\Action;
+use framework\Request\Request;
+use framework\Routing\Router;
 
 class App
 {

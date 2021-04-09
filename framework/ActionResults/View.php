@@ -1,8 +1,8 @@
 <?php
 
-namespace Framework\ActionResults;
+namespace framework\ActionResults;
 
-use Framework\App;
+use framework\App;
 
 class View implements ActionResult
 {
