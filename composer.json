@@ -1,0 +1,16 @@
+{
+    "name": "rufar/framework",
+    "authors": [
+        {
+            "name": "matcur",
+            "email": "ru.far2014@yandex.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "src/",
+            "Blog\\": "blog/"
+        }
+    }
+}
