@@ -8,4 +8,9 @@ class Arr
     {
         return array_key_exists($key, $array);
     }
+
+    public static function is($value)
+    {
+        return is_array($value);
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace Framework\Request;
 
+use Framework\Routing\Route;
+
 class Request
 {
     /**
@@ -19,11 +21,23 @@ class Request
      */
     private $server;
 
+    /**
+     * @var Route
+     */
+    private $currentRoute;
+
     public function __construct(InputBag $query, InputBag $post, InputBag $server)
     {
         $this->query = $query;
         $this->post = $post;
         $this->server = $server;
+    }
+
+    public function setCurrentRoute(Route $route)
+    {
+        $this->currentRoute = $route;
+
+        return $this;
     }
 
     public function get($key, $default = null)
