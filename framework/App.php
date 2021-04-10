@@ -13,8 +13,6 @@ use Framework\Routing\Router;
 
 class App
 {
-    const CONTROLLERS_NAMESPACE = 'App\\Controllers\\';
-
     /**
      * @var Router
      */

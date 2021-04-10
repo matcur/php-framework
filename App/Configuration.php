@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Middlewares\EventMiddleware;
+use App\Middlewares\RouteMiddleware;
 use Framework\App;
 use Framework\BaseMiddleware;
 use Framework\Support\Collection;
@@ -18,6 +19,7 @@ class Configuration
     {
         $this->middlewares = new Collection([
             new EventMiddleware($app),
+            new RouteMiddleware($app),
         ]);
     }
 
