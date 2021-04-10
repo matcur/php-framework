@@ -13,4 +13,9 @@ class Arr
     {
         return is_array($value);
     }
+
+    public static function keys(array $array)
+    {
+        return array_keys($array);
+    }
 }

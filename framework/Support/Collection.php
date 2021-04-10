@@ -8,16 +8,18 @@ class Collection implements \ArrayAccess
 
     public function __construct($value = [])
     {
-        if (Arr::is($value)) {
+        if (Arr::is($value))
             $this->items = $value;
-        } else {
+        else
             $this->items[] = $value;
-        }
     }
 
-    public function push($value)
+    public function push($value, $key = null)
     {
-        $this->items[] = $value;
+        if (is_null($key))
+            $this->items[] = $value;
+        else
+            $this->items[$key] = $value;
     }
 
     public function put($key, $value)
@@ -32,8 +34,8 @@ class Collection implements \ArrayAccess
 
     public function foreach(callable $callback)
     {
-        foreach ($this->items as $item)
-            $callback($item);
+        foreach (Arr::keys($this->items) as $key)
+            $callback($this->items[$key], $key);
     }
 
     public function get($key)

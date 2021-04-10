@@ -1,10 +1,10 @@
 <?php
 
-namespace Framework\Events;
+namespace Framework;
 
-use Framework\App;
+use Framework\Routing\Route;
 
-abstract class Subscriber
+abstract class BaseMiddleware
 {
     /**
      * @var App
@@ -16,5 +16,5 @@ abstract class Subscriber
         $this->app = $app;
     }
 
-    public abstract function act(Event $event);
+    public abstract function handle();
 }

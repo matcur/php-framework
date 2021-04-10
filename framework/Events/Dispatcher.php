@@ -9,18 +9,23 @@ class Dispatcher
     /**
      * @var Collection<string, Subscriber>
      */
-    private $subscribers = [];
+    private $subscribers;
 
-    public function subscribe(string $eventName, Subscriber $handler)
+    public function __construct()
     {
-        $this->subscribers->put($eventName, $handler);
+        $this->subscribers = new Collection();
     }
 
-    public function fire(string $eventName, ...$parameters)
+    public function subscribe(string $eventName, Subscriber $subscriber)
     {
-        $subscribers = $this->subscribers->get($eventName);
-        $subscribers->foreach(function (Subscriber $subscriber) use ($parameters) {
-            $subscriber->act(...$parameters);
+        $this->subscribers->push($subscriber, $eventName);
+    }
+
+    public function fire(Event $event)
+    {
+        $subscribers = $this->subscribers->get($event->getName());
+        $subscribers->foreach(function (Subscriber $subscriber) use ($event) {
+            $subscriber->act($event);
         });
     }
 }
