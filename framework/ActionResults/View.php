@@ -18,18 +18,22 @@ class View implements ActionResult
 
     public function __construct(string $path, array $arguments = [])
     {
-        $this->path = $path;
+        $this->path = $_SERVER['DOCUMENT_ROOT'] . '/../App/views/' . $path;
         $this->arguments = $arguments;
     }
 
     public function execute()
     {
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/../App/views/' . $this->path;
-        if (!file_exists($path))
+        if (!file_exists($this->path))
             $this->throwFileNotExistsException();
 
+        $this->render();
+    }
+
+    private function render()
+    {
         extract($this->arguments);
-        require_once $path;
+        require_once $this->path;
     }
 
     private function throwFileNotExistsException()

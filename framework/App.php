@@ -5,6 +5,7 @@ namespace Framework;
 use Framework\ActionResults\ActionResult;
 use Framework\Controller\Action;
 use Framework\Request\Request;
+use Framework\Routing\Route;
 use Framework\Routing\Router;
 
 class App
@@ -29,14 +30,14 @@ class App
 
     public function run()
     {
-        $this->executeTargetAction();
+        $route = $this->router->resolveCurrentRoute();
+        $this->executeTargetAction($route);
+
     }
 
-    private function executeTargetAction()
+    private function executeTargetAction(Route $route)
     {
-        $route = $this->router->resolveCurrentRoute();
-        /** @var $actionResult ActionResult */
-        $actionResult = (new Action($route))->execute();
+        $actionResult = (new Action($route, $this))->execute();
         $actionResult->execute();
     }
 }
