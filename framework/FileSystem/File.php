@@ -18,7 +18,7 @@ class File
 
     public function write(string $content): File
     {
-        file_put_contents($this->path, $content);
+        file_put_contents($this->path, $content, FILE_APPEND);
 
         return $this;
     }

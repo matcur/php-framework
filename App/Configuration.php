@@ -5,6 +5,7 @@ namespace App;
 use App\ServiceProviders\EventServiceProvider;
 use App\ServiceProviders\RouteServiceProvider;
 use Framework\App;
+use Framework\FileSystem\TodayFile;
 use Framework\ServiceProvider;
 use Framework\FileSystem\File;
 use Framework\Logging\FileLogger;
@@ -30,7 +31,7 @@ class Configuration
             new RouteServiceProvider($app),
         ]);
         $this->logger = new FileLogger(
-            new File($_SERVER['DOCUMENT_ROOT'] . '/../private/log/today.txt')
+            new TodayFile($_SERVER['DOCUMENT_ROOT'] . '/../private/log')
         );
     }
 
