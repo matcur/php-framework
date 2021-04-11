@@ -12,38 +12,30 @@ use Framework\Caching\Cache;
 use Framework\Controller\BaseController;
 use Framework\Events\Dispatcher;
 use Framework\Events\Event;
+use Framework\Logging\Logger;
 
 class PostController extends BaseController
 {
     /**
-     * @var Cache
+     * @var Logger
      */
-    private $cache;
-
-    /**
-     * @var Dispatcher
-     */
-    private $eventDispatcher;
+    private $logger;
 
     public function __construct(App $app)
     {
         parent::__construct($app);
-        $this->cache = new Cache();
-        $this->eventDispatcher = $app->getEventDispatcher();
+        $this->logger = $app->getConfiguration()->getLogger();
     }
 
     public function actionIndex()
     {
-        $posts = $this->cache->remember('posts', function () {
-            return [
-                new Post(1, 'first'),
-                new Post(2, 'second'),
-                new Post(3, 'third' . rand(1, 20)),
-            ];
-        });
-        $this->eventDispatcher->fire(
-            new Event('user-in', new User('Jon'))
-        );
+        $posts = [
+            new Post(1, 'first'),
+            new Post(2, 'second'),
+            new Post(3, 'third' . rand(1, 20)),
+        ];
+
+        $this->logger->critical('log in');
 
         return new View(
             'post/index.php',

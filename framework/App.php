@@ -3,8 +3,6 @@
 namespace Framework;
 
 use App\Configuration;
-use App\Middlewares\EventMiddleware;
-use Framework\ActionResults\ActionResult;
 use Framework\Controller\Action;
 use Framework\Events\Dispatcher;
 use Framework\Request\Request;
@@ -44,6 +42,11 @@ class App
     public function getEventDispatcher(): Dispatcher
     {
         return $this->eventDispatcher;
+    }
+
+    public function getConfiguration(): Configuration
+    {
+        return $this->configuration;
     }
 
     public function run()
