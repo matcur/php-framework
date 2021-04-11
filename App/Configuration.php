@@ -2,10 +2,10 @@
 
 namespace App;
 
-use App\Middlewares\EventMiddleware;
-use App\Middlewares\RouteMiddleware;
+use App\ServiceProviders\EventServiceProvider;
+use App\ServiceProviders\RouteServiceProvider;
 use Framework\App;
-use Framework\BaseMiddleware;
+use Framework\ServiceProvider;
 use Framework\FileSystem\File;
 use Framework\Logging\FileLogger;
 use Framework\Logging\Logger;
@@ -14,9 +14,9 @@ use Framework\Support\Collection;
 class Configuration
 {
     /**
-     * @var Collection<BaseMiddleware>
+     * @var Collection<ServiceProvider>
      */
-    private $middlewares;
+    private $serviceProviders;
 
     /**
      * @var Logger
@@ -25,9 +25,9 @@ class Configuration
 
     public function __construct(App $app)
     {
-        $this->middlewares = new Collection([
-            new EventMiddleware($app),
-            new RouteMiddleware($app),
+        $this->serviceProviders = new Collection([
+            new EventServiceProvider($app),
+            new RouteServiceProvider($app),
         ]);
         $this->logger = new FileLogger(
             new File($_SERVER['DOCUMENT_ROOT'] . '/../private/log/today.txt')
@@ -39,10 +39,10 @@ class Configuration
         return $this->logger;
     }
 
-    public function seedMiddlewares()
+    public function seedServiceProviders()
     {
-        $this->middlewares->foreach(function (BaseMiddleware $middleware) {
-            $middleware->handle();
+        $this->serviceProviders->foreach(function (ServiceProvider $serviceProvider) {
+            $serviceProvider->handle();
         });
     }
 }

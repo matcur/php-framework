@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Middlewares;
+namespace App\ServiceProviders;
 
 use App\Subscribers\UserInSubscriber;
 use Framework\App;
-use Framework\BaseMiddleware;
+use Framework\ServiceProvider;
 use Framework\Events\Subscriber;
 use Framework\Support\Collection;
 
-class EventMiddleware extends BaseMiddleware
+class EventServiceProvider extends ServiceProvider
 {
     /**
      * @var Collection<string, Subscriber>

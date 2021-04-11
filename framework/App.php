@@ -66,6 +66,6 @@ class App
 
     private function bootstrapConfiguration()
     {
-        $this->configuration->seedMiddlewares();
+        $this->configuration->seedServiceProviders();
     }
 }

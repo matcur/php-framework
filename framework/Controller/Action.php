@@ -2,7 +2,7 @@
 
 namespace Framework\Controller;
 
-use App\Middlewares\RouteMiddleware;
+use App\ServiceProviders\RouteServiceProvider;
 use Framework\ActionResults\ActionResult;
 use Framework\App;
 use Framework\Routing\Route;
@@ -28,7 +28,7 @@ class Action
     public function execute(): ActionResult
     {
         $route = $this->route;
-        $controller = RouteMiddleware::CONTROLLER_NAMESPACE . $route->getController();
+        $controller = RouteServiceProvider::CONTROLLER_NAMESPACE . $route->getController();
         $action = $route->getAction();
         $parameters = $route->getParameters();
         

@@ -4,7 +4,7 @@ namespace Framework;
 
 use Framework\Routing\Route;
 
-abstract class BaseMiddleware
+abstract class ServiceProvider
 {
     /**
      * @var App
