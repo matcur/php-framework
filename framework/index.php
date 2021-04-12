@@ -1,6 +1,7 @@
 <?php
 
 use Framework\App;
+use Framework\DependencyContainer;
 use Framework\Request\InputBag;
 use Framework\Request\Request;
 use Framework\Routing\Router;

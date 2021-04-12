@@ -19,25 +19,18 @@ class Configuration
      */
     private $serviceProviders;
 
-    /**
-     * @var Logger
-     */
-    private $logger;
-
     public function __construct(App $app)
     {
         $this->serviceProviders = new Collection([
             new EventServiceProvider($app),
             new RouteServiceProvider($app),
         ]);
-        $this->logger = new FileLogger(
-            new TodayFile($_SERVER['DOCUMENT_ROOT'] . '/../private/log')
-        );
-    }
-
-    public function getLogger()
-    {
-        return $this->logger;
+        $dependencies = $app->getDependencyContainer();
+        $dependencies->addSingleton('logger', function () {
+            return new FileLogger(
+                new TodayFile($_SERVER['DOCUMENT_ROOT'] . '/../private/log')
+            );
+        });
     }
 
     public function seedServiceProviders()

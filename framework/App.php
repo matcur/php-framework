@@ -22,35 +22,32 @@ class App
     private $request;
 
     /**
-     * @var Dispatcher
-     */
-    private $eventDispatcher;
-
-    /**
      * @var Configuration
      */
     private $configuration;
+
+    /**
+     * @var DependencyContainer
+     */
+    private $dependencyContainer;
 
     public function __construct(Router $router, Request $request)
     {
         $this->router = $router;
         $this->request = $request;
-        $this->eventDispatcher = new Dispatcher();
+        $this->dependencyContainer = new DependencyContainer();
         $this->configuration = new Configuration($this);
     }
 
-    public function getEventDispatcher(): Dispatcher
+    public function getDependencyContainer(): DependencyContainer
     {
-        return $this->eventDispatcher;
-    }
-
-    public function getConfiguration(): Configuration
-    {
-        return $this->configuration;
+        return $this->dependencyContainer;
     }
 
     public function run()
     {
+        $this->initDependencies();
+
         $route = $this->router->resolveCurrentRoute();
         $this->request->setCurrentRoute($route);
 
@@ -67,5 +64,14 @@ class App
     private function bootstrapConfiguration()
     {
         $this->configuration->seedServiceProviders();
+    }
+
+    private function initDependencies()
+    {
+        $container = $this->dependencyContainer;
+        $container->addSingleton('event-dispatcher', function () {
+                return new Dispatcher();
+            }
+        );
     }
 }

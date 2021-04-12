@@ -2,8 +2,6 @@
 
 namespace Framework;
 
-use Framework\Routing\Route;
-
 abstract class ServiceProvider
 {
     /**
@@ -11,9 +9,15 @@ abstract class ServiceProvider
      */
     protected $app;
 
+    /**
+     * @var DependencyContainer
+     */
+    protected $dependencies;
+
     public function __construct(App $app)
     {
         $this->app = $app;
+        $this->dependencies = $app->getDependencyContainer();
     }
 
     public abstract function handle();

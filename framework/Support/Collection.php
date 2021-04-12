@@ -38,9 +38,14 @@ class Collection implements \ArrayAccess
             $callback($this->items[$key], $key);
     }
 
+    public function hasKey($key)
+    {
+        return Arr::hasKey($this->items, $key);
+    }
+
     public function get($key)
     {
-        return new Collection($this->items[$key]);
+        return $this->items[$key];
     }
 
     public function offsetExists($offset)

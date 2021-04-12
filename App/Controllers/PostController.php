@@ -21,31 +21,35 @@ class PostController extends BaseController
      */
     private $logger;
 
+    /**
+     * @var Post[]
+     */
+    private $posts;
+
     public function __construct(App $app)
     {
         parent::__construct($app);
-        $this->logger = $app->getConfiguration()->getLogger();
-    }
-
-    public function actionIndex()
-    {
-        $posts = [
+        $this->logger = $this->dependencies->resolve('logger');
+        $this->posts = [
             new Post(1, 'first'),
             new Post(2, 'second'),
             new Post(3, 'third' . rand(1, 20)),
         ];
+    }
 
+    public function actionIndex()
+    {
         $this->logger->critical('log in');
 
         return new View(
             'post/index.php',
-            compact('posts')
+            ['posts' => $this->posts]
         );
     }
 
-    public function actionShow()
+    public function actionShow($parameters)
     {
-        $post = new Post(1, 'first');
+        $post = $this->posts[$parameters['id']];
 
         return new View(
             'post/show.php',

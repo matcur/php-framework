@@ -3,6 +3,7 @@
 namespace Framework\Controller;
 
 use Framework\App;
+use Framework\DependencyContainer;
 
 abstract class BaseController
 {
@@ -11,8 +12,14 @@ abstract class BaseController
      */
     protected $app;
 
+    /**
+     * @var DependencyContainer
+     */
+    protected $dependencies;
+
     public function __construct(App $app)
     {
         $this->app = $app;
+        $this->dependencies = $app->getDependencyContainer();
     }
 }
