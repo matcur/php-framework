@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\ServiceProviders\AppServiceProvider;
 use App\ServiceProviders\EventServiceProvider;
 use App\ServiceProviders\RouteServiceProvider;
 use Framework\App;
@@ -22,15 +23,10 @@ class Configuration
     public function __construct(App $app)
     {
         $this->serviceProviders = new Collection([
+            new AppServiceProvider($app),
             new EventServiceProvider($app),
             new RouteServiceProvider($app),
         ]);
-        $dependencies = $app->getDependencyContainer();
-        $dependencies->addSingleton('logger', function () {
-            return new FileLogger(
-                new TodayFile($_SERVER['DOCUMENT_ROOT'] . '/../private/log')
-            );
-        });
     }
 
     public function seedServiceProviders()
