@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Controller;
+namespace Framework\Routing;
 
 use App\ServiceProviders\RouteServiceProvider;
 use Framework\ActionResults\ActionResult;

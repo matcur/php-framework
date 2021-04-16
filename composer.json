@@ -14,5 +14,6 @@
             "Framework\\": "framework/",
             "App\\": "App/"
         }
-    }
+    },
+    "description": ""
 }

@@ -9,12 +9,12 @@ use Framework\ActionResults\Redirect;
 use Framework\ActionResults\View;
 use Framework\App;
 use Framework\Caching\Cache;
-use Framework\Controller\BaseController;
+use Framework\Routing\Controller;
 use Framework\Events\Dispatcher;
 use Framework\Events\Event;
 use Framework\Logging\Logger;
 
-class PostController extends BaseController
+class PostController extends Controller
 {
     /**
      * @var Logger
@@ -33,7 +33,7 @@ class PostController extends BaseController
         $this->posts = [
             new Post(1, 'first'),
             new Post(2, 'second'),
-            new Post(3, 'third' . rand(1, 20)),
+            new Post(3, 'third'),
         ];
     }
 

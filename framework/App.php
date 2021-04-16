@@ -3,7 +3,7 @@
 namespace Framework;
 
 use App\Configuration;
-use Framework\Controller\Action;
+use Framework\Routing\Action;
 use Framework\Events\Dispatcher;
 use Framework\Request\Request;
 use Framework\Routing\Route;
@@ -70,8 +70,7 @@ class App
     {
         $container = $this->dependencyContainer;
         $container->addSingleton('event-dispatcher', function () {
-                return new Dispatcher();
-            }
-        );
+            return new Dispatcher();
+        });
     }
 }

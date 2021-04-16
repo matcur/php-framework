@@ -3,6 +3,7 @@
 namespace Framework\ActionResults;
 
 use Framework\App;
+use Framework\Exceptions\File\FileNotExistsException;
 
 class View implements ActionResult
 {
@@ -25,7 +26,7 @@ class View implements ActionResult
     public function execute()
     {
         if (!file_exists($this->path))
-            $this->throwFileNotExistsException();
+            throw new FileNotExistsException($this->path);
 
         $this->render();
     }
@@ -34,12 +35,5 @@ class View implements ActionResult
     {
         extract($this->arguments);
         require_once $this->path;
-    }
-
-    private function throwFileNotExistsException()
-    {
-        throw new \InvalidArgumentException(
-            'File ' . $this->path . " doesn't exists in views folder"
-        );
     }
 }

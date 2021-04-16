@@ -1,11 +1,11 @@
 <?php
 
-namespace Framework\Controller;
+namespace Framework\Routing;
 
 use Framework\App;
 use Framework\DependencyContainer;
 
-abstract class BaseController
+abstract class Controller
 {
     /**
      * @var App
