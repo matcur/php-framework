@@ -2,17 +2,14 @@
 
 namespace App\Controllers;
 
+use App\Middlewares\Authorize;
+use App\Middlewares\SomeShit;
 use App\Models\Post;
-use App\Models\User;
-use Framework\ActionResults\Json;
-use Framework\ActionResults\Redirect;
 use Framework\ActionResults\View;
 use Framework\App;
-use Framework\Caching\Cache;
 use Framework\Routing\Controller;
-use Framework\Events\Dispatcher;
-use Framework\Events\Event;
 use Framework\Logging\Logger;
+use Framework\Support\Collection;
 
 class PostController extends Controller
 {
@@ -29,12 +26,16 @@ class PostController extends Controller
     public function __construct(App $app)
     {
         parent::__construct($app);
+
         $this->logger = $this->dependencies->resolve('logger');
         $this->posts = [
             new Post(1, 'first'),
             new Post(2, 'second'),
             new Post(3, 'third'),
         ];
+        $this->middlewares = new Collection([
+            'index' => [new SomeShit($app)],
+        ]);
     }
 
     public function actionIndex()

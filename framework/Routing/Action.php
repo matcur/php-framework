@@ -27,11 +27,27 @@ class Action
 
     public function execute(): ActionResult
     {
+        $controller = $this->makeController();
+        $controller->seedMiddlewares(
+            $this->route->getClearAction()
+        );
+        
+        return $this->runController($controller);
+    }
+
+    private function runController(Controller $controller)
+    {
         $route = $this->route;
-        $controller = RouteServiceProvider::CONTROLLER_NAMESPACE . $route->getController();
         $action = $route->getAction();
         $parameters = $route->getParameters();
-        
-        return (new $controller($this->app))->{$action}($parameters);
+
+        return $controller->{$action}($parameters);
+    }
+
+    private function makeController(): Controller
+    {
+        $controllerClass = RouteServiceProvider::CONTROLLER_NAMESPACE . $this->route->getController();
+
+        return new $controllerClass($this->app);
     }
 }

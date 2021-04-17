@@ -2,19 +2,22 @@
 
 namespace App;
 
+use App\Middlewares\Authorize;
 use App\ServiceProviders\AppServiceProvider;
 use App\ServiceProviders\EventServiceProvider;
 use App\ServiceProviders\RouteServiceProvider;
 use Framework\App;
-use Framework\FileSystem\TodayFile;
+use Framework\Routing\Middleware\Middleware;
 use Framework\ServiceProvider;
-use Framework\FileSystem\File;
-use Framework\Logging\FileLogger;
-use Framework\Logging\Logger;
 use Framework\Support\Collection;
 
 class Configuration
 {
+    /**
+     * @var Collection<Middleware>
+     */
+    public $globalMiddlewares;
+
     /**
      * @var Collection<ServiceProvider>
      */
@@ -26,6 +29,9 @@ class Configuration
             new AppServiceProvider($app),
             new EventServiceProvider($app),
             new RouteServiceProvider($app),
+        ]);
+        $this->globalMiddlewares = new Collection([
+            new Authorize($app),
         ]);
     }
 

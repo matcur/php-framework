@@ -19,13 +19,7 @@ class Route
      */
     private $parameters;
 
-    /**
-     * Route constructor.
-     * @param string $controller
-     * @param string $action
-     * @param array $parameters
-     */
-    public function __construct($controller, $action, $parameters)
+    public function __construct(string $controller, string $action, array $parameters)
     {
         $this->controller = $controller;
         $this->action = $action;
@@ -53,5 +47,10 @@ class Route
     public function getParameters()
     {
         return $this->parameters;
+    }
+
+    public function getClearAction()
+    {
+        return $this->action;
     }
 }

@@ -68,9 +68,15 @@ class App
 
     private function initDependencies()
     {
-        $container = $this->dependencyContainer;
-        $container->addSingleton('event-dispatcher', function () {
+        $dependencies = $this->dependencyContainer;
+        $dependencies->addSingleton('event-dispatcher', function () {
             return new Dispatcher();
+        });
+        $dependencies->addSingleton('request', function () {
+            return $this->request;
+        });
+        $dependencies->addSingleton('configuration', function () {
+            return $this->configuration;
         });
     }
 }

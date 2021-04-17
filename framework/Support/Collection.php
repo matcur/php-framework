@@ -2,16 +2,20 @@
 
 namespace Framework\Support;
 
-class Collection implements \ArrayAccess
+use ArrayAccess;
+
+class Collection implements ArrayAccess
 {
-    private $items = [];
+    private $items;
 
     public function __construct($value = [])
     {
         if (Arr::is($value))
             $this->items = $value;
+        else if ($value instanceof Collection)
+            $this->items = $value->toArray();
         else
-            $this->items[] = $value;
+            $this->items = [$value];
     }
 
     public function push($value, $key = null)
@@ -46,6 +50,16 @@ class Collection implements \ArrayAccess
     public function get($key)
     {
         return $this->items[$key];
+    }
+
+    public function count()
+    {
+        return count($this->items);
+    }
+
+    public function toArray()
+    {
+        return Arr::is($this->items)? $this->items: [$this->items];
     }
 
     public function offsetExists($offset)
