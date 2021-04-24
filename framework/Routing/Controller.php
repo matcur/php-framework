@@ -35,7 +35,9 @@ abstract class Controller
         $this->app = $app;
         $this->dependencies = $app->getDependencyContainer();
         $this->middlewares = new Collection();
-        $this->globalMiddlewares = $this->dependencies->resolve('configuration')->globalMiddlewares;
+        $this->globalMiddlewares = $this->dependencies
+            ->resolve('configuration')
+            ->globalMiddlewares;
     }
 
     public function seedMiddlewares(string $action)

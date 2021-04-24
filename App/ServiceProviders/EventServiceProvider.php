@@ -33,7 +33,7 @@ class EventServiceProvider extends ServiceProvider
     private function passSubscribers()
     {
         /** @var EventBus $dispatcher */
-        $dispatcher = $this->dependencies->resolve('event-dispatcher');
+        $dispatcher = $this->dependencies->resolve('event-bus');
         $this->subscribers->foreach(function (Subscriber $subscriber, $key) use ($dispatcher) {
              $dispatcher->subscribe($key, $subscriber);
         });

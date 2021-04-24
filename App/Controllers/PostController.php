@@ -3,13 +3,12 @@
 namespace App\Controllers;
 
 use App\Middlewares\SomeShit;
-use App\Models\Post;
-use App\Validation\PostValidation;
 use Framework\ActionResults\ActionResult;
 use Framework\ActionResults\Json;
 use Framework\App;
 use Framework\Routing\Controller;
 use Framework\Support\Collection;
+use Framework\Translation\Translator;
 
 class PostController extends Controller
 {
@@ -24,12 +23,8 @@ class PostController extends Controller
 
     public function actionPost($parameters): ActionResult
     {
-        $post = new Post($parameters['id'], $parameters['title']);
-        $validation = new PostValidation($post);
-        $result = $validation->validate();
-        if (!$result->success)
-            return new Json($result->errors);
+        $translator = new Translator($parameters['language']);
 
-        return new Json("success");
+        return new Json($translator['hello']);
     }
 }

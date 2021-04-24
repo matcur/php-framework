@@ -13,6 +13,6 @@ class Json implements ActionResult
 
     public function execute()
     {
-        echo json_encode($this->value);
+        echo json_encode($this->value, JSON_UNESCAPED_UNICODE);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Framework\ActionResults;
 
-use Framework\App;
 use Framework\Exceptions\File\FileNotExistsException;
 
 class View implements ActionResult
