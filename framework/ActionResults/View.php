@@ -19,7 +19,7 @@ class View implements ActionResult
 
     public function __construct(string $path, array $arguments = [])
     {
-        $this->path = $_SERVER['DOCUMENT_ROOT'] . '/../App/views/' . $path;
+        $this->path = $_SERVER['DOCUMENT_ROOT'] . '/../views/' . $path;
         $this->arguments = $arguments;
     }
 
