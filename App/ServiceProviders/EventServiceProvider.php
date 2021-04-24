@@ -4,7 +4,7 @@ namespace App\ServiceProviders;
 
 use App\Subscribers\UserInSubscriber;
 use Framework\App;
-use Framework\Events\Dispatcher;
+use Framework\Events\EventBus;
 use Framework\ServiceProvider;
 use Framework\Events\Subscriber;
 use Framework\Support\Collection;
@@ -32,7 +32,7 @@ class EventServiceProvider extends ServiceProvider
 
     private function passSubscribers()
     {
-        /** @var Dispatcher $dispatcher */
+        /** @var EventBus $dispatcher */
         $dispatcher = $this->dependencies->resolve('event-dispatcher');
         $this->subscribers->foreach(function (Subscriber $subscriber, $key) use ($dispatcher) {
              $dispatcher->subscribe($key, $subscriber);

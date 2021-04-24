@@ -4,7 +4,7 @@ namespace Framework;
 
 use App\Configuration;
 use Framework\Routing\Action;
-use Framework\Events\Dispatcher;
+use Framework\Events\EventBus;
 use Framework\Request\Request;
 use Framework\Routing\Route;
 use Framework\Routing\Router;
@@ -69,8 +69,8 @@ class App
     private function initDependencies()
     {
         $dependencies = $this->dependencyContainer;
-        $dependencies->addSingleton('event-dispatcher', function () {
-            return new Dispatcher();
+        $dependencies->addSingleton('event-bus', function () {
+            return new EventBus();
         });
         $dependencies->addSingleton('request', function () {
             return $this->request;

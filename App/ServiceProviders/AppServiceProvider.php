@@ -4,7 +4,7 @@ namespace App\ServiceProviders;
 
 use App\Subscribers\UserInSubscriber;
 use Framework\App;
-use Framework\Events\Dispatcher;
+use Framework\Events\EventBus;
 use Framework\FileSystem\TodayFile;
 use Framework\Logging\FileLogger;
 use Framework\ServiceProvider;

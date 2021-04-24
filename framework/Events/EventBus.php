@@ -4,7 +4,7 @@ namespace Framework\Events;
 
 use Framework\Support\Collection;
 
-class Dispatcher
+class EventBus
 {
     /**
      * @var Collection<string, Subscriber>
