@@ -18,6 +18,9 @@ class Chain
 
     public function seed()
     {
+        if ($this->middlewares->count() == 0)
+            return;
+
         $this->initialize();
 
         $this->middlewares[0]->handle();

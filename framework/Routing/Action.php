@@ -35,7 +35,7 @@ class Action
         return $this->runController($controller);
     }
 
-    private function runController(Controller $controller)
+    private function runController(Controller $controller): ActionResult
     {
         $route = $this->route;
         $action = $route->getAction();

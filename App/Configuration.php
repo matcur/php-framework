@@ -31,7 +31,6 @@ class Configuration
             new RouteServiceProvider($app),
         ]);
         $this->globalMiddlewares = new Collection([
-            new Authorize($app),
         ]);
     }
 
